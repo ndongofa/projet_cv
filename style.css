@@ -12,20 +12,42 @@
     src: url('fonts/Montserrat-Bold.otf') format("opentype");
     font-weight: 700;
 }
+
+@keyframes fun {
+    0% {
+        transform:scale(1) rotate(0deg);
+    }
+
+    100% {
+        transform:scale(1.1) rotate(2deg);
+    }  
+}
+
+@keyframes fun1 {
+    0% {
+        transform: scale(1)
+    }
+
+    100% {
+        transform: scale(1.1)
+    }
+}
+
+
 * {
     box-sizing: border-box;
 }
 
 a {
     color:black;
-    opacity: 0.5;
-    text-decoration: none;
+    opacity: 1.5;
+    text-decoration:underline;
 }
 a:hover, a.active {
     opacity: 1;
     text-decoration: none;
-    transform: scale(1.05) rotate(2deg);
-
+    transform: scale(1.1);
+    animation: fun .3s reverse forwards;
 }
 html, h1, h2, h3 {
 font-family: "Cardo", serif;
@@ -71,7 +93,6 @@ body, html {
 
 
 .header {
-    
     background-color: rgb(225, 70, 49);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     
@@ -89,9 +110,7 @@ body, html {
      "side foot";
     grid-template-columns: minmax(200px, 205px) minmax(278px, 1fr);
 
-     
      grid-area: header;
-
 }
 
 
@@ -100,6 +119,18 @@ body, html {
     width: minmax(50px, 200px);
     height: minmax(50px, 200px);
     grid-area: side;
+}
+
+
+.header-img img {
+    width: 100px;
+    height: 100px;  
+    border: 0.2rem solid;
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.header-img:hover img {
+    animation: fun .3s reverse forwards;   
 }
 
 
@@ -118,13 +149,14 @@ body, html {
 
 .header-nav {
     display:grid;
-    place-items: safe center;
-
-    overflow-wrap: break-word;
-    margin: 5px;
-    overflow-x: scroll;
-
+   
     grid-area: foot;
+}
+
+.header-nav nav {
+    display: flex;
+    place-self: stretch;
+    justify-content: space-around;
 }
 
 .header-nav a {
@@ -132,6 +164,7 @@ body, html {
     padding: 0 10px;
     
 }
+
 /*
 .header {
     position: fixed;
@@ -192,7 +225,7 @@ body, html {
 body{
     display: grid;
     
-    grid-template-rows: minmax(50px, 205px) 1fr;
+    grid-template-rows: minmax(50px, 100px) 1fr;
     grid-template-columns: minmax(278px, 100%);
     grid-template-areas:
     "header header" 
@@ -202,7 +235,7 @@ body{
 .cover {
     display: grid;
 
-    grid-template-rows: 1fr minmax(40px, 80px);
+    grid-template-rows: 1fr minmax(10px, 20px);
     grid-template-columns: minmax(50px, 205px) 1fr;
     grid-template-areas: 
     "sidebar main" 
@@ -235,7 +268,7 @@ body{
 
     position: fixed;
     z-index: 2;
-    top: 218px;
+    top: 100px;
     left:0;
     bottom:0;
     
@@ -247,25 +280,35 @@ body{
     
 }
 .sidebar-body {
-
     display:grid;
     grid-area: bas-rempli;
 }
 
-.sidebar-body div{
+.sidebar-body div:first-child {
+}
 
+.sidebar-body div{
     background: #f4f4f4;
     color: black;
-    padding: 0;
+    padding: 5px;
     border-radius: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(50px, 100%));
-   
+
+
+    
+    /*border: 0.2rem solid;
+    border-color: rgb(225, 70, 49);*/
+}
+
+.sidebar-body div:hover {
+    transform: scale(1.05)   
+    
 }
 
 .sidebar div {
     overflow-wrap: break-word;
     margin: 5px;
-    overflow-x: scroll;    
+    overflow-x: scroll;  
 }
 
 .sidebar div p {
@@ -277,68 +320,23 @@ body{
 
 
 
+@media screen and (max-width: 768px) {
 
-@media screen and (max-width: 375px) {
-
-   .header{
-       max-height: 100px; 
-       display: flex;
-       box-sizing: border-box;
-       overflow-y: scroll;    
-   }
-
-   .header-title p {
-       display: flex;
-       box-sizing: border-box;
-       overflow-y: scroll;
-       font-size: x-small;    
-   }
-
-   .header-nav nav {
-       display: flex;
-       box-sizing: border-box;
-       overflow-y: scroll;  
-       font-size: medium;    
-     }
-
-    .header-img img {
-        max-width: 100px;
-        max-height: 100px;
+    .header {
+    grid-template-columns: minmax(50px, 100px) minmax(665px, 1fr);
+        
     }
 
-
-    .body {
-    grid-template-rows: minmax(50px, 100px) 1fr;
-
-    }
-    .cover {
-    grid-template-columns: minmax(50px, 100px) 1fr;}
-
-    .main {
-        margin-bottom: 0;}
-
-
-    .sidebar {
-        top: 100px;
-        grid-template-columns: minmax(50px, 100px);}
-
-    .footer {
-        display: grid;
-    left: 100px;
-    z-index: 1;
-    background-color:rgb(49, 54, 56);
-    box-shadow: 0px 4px 30px;
-    color: white;
-
-    justify-content: space-around;
-
-    overflow-wrap: break-word;
-    overflow-x: scroll;
-
-    grid-area: footer;  
+    .header-title {
+        margin: 0;
     }
 
+    .header-nav nav {
+        overflow-wrap: break-word;
+        overflow-x: scroll;
+    } 
 }
+
 
 
 
@@ -390,7 +388,8 @@ sidebar-body, h3 {
 
     overflow-wrap: break-word;
     margin: 0;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     overflow-x: scroll;
     grid-area: main;
     grid-template-columns: repeat(auto-fill, minmax(250px, 100%));
@@ -406,8 +405,15 @@ sidebar-body, h3 {
   padding: 1.5rem;
   border-radius: 1rem;
 
+  border: 0.2rem solid;
+  border-color: rgb(49, 54, 56);
+
   overflow-wrap: break-word;
   overflow-x: scroll;
+}
+
+.main h1 {
+    
 }
 
 /*
@@ -443,15 +449,13 @@ content: "\002605 \002605 \002605";
 
 .footer {
     
-    display: grid;
+    display: flex;
 
 
     position: fixed;
     bottom: 0;
     left: 205px;
     right: 0;
-
-    left: 100px;
     z-index: 1;
     background-color:rgb(49, 54, 56);
     box-shadow: 0px 4px 30px;
@@ -473,7 +477,122 @@ content: "\002605 \002605 \002605";
     margin: 0;*/
 
     grid-area: footer;   
+    
 }
+
+.footer a{
+    color: white;
+}
+
+
+
+
+@media screen and (max-width: 375px) {
+
+    .header {
+    display: flex;
+    grid-template-columns: minmax(50px, 50px) minmax(325px, 1fr);
+    max-height: 50px;
+
+    }
+   
+    .header-nav nav {
+        padding: 3px;
+        display: grid;
+        overflow-wrap: break-word;
+        overflow-x: scroll;
+
+    } 
+    .header-title p {
+        padding: 3px;
+        display: grid;
+        overflow-wrap: break-word;
+        overflow-x: scroll;
+    } 
+    .header-img img {
+        max-height: 50px;
+        max-width: 50px;
+    }
+
+    .sidebar {
+        top: 50px;
+        grid-template-columns: minmax(50px, 100px);
+        padding: 2px;
+    }
+
+    body {
+    grid-template-rows: minmax(40px, 50px) 1fr;
+    grid-template-columns: minmax(50px, 100px) 1fr;
+
+    }
+
+    .cover {
+    grid-template-columns: minmax(50px, 100px) 1fr;
+    
+    
+    }
+
+    .main {
+        margin-bottom: 25px;
+        margin-top: 2px;
+    }
+
+    .main #experiences, #competances, #formations {
+        padding: 5px;
+    }
+
+    .footer {
+        max-height: 50px;
+        left: 100px;
+        padding: 5px;
+        overflow-wrap: break-word;
+        overflow: scroll;
+    }
+
+}
+
+
+/******************************Style du formulaire*******************************/
+
+.formcontact {
+    display: table;
+    place-self: center;
+    margin-top: auto;
+}
+.formcontact label, input, button, a {
+    display: table-cell;
+}
+
+
+/******************************Notation*******************************/
+
+.unetoile::after{
+    content:"\002605" "\002606" "\002606" "\002606" "\002606";
+    color: rgb(49, 54, 56);
+}
+
+.deuxetoile::after{
+content:"\002605 \002605\002606 \002606 \002606";
+    color: rgb(49, 54, 56);
+   
+}
+
+.troisetoile::after{
+    content:"\002605 \002605 \002605 \002606 \002606";
+    color: rgb(49, 54, 56);
+   
+}
+
+.quatreetoile::after{
+    content:"\002605 \002605 \002605 \002605 \002606";
+    color: rgb(49, 54, 56);   
+}
+
+.cinqetoile::after{
+    content:"\002605 \002605 \002605 \002605 \002605";
+    color: rgb(49, 54, 56);    
+}
+
 /*
 .footer{
     position: relative;
